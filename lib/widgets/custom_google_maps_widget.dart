@@ -24,13 +24,13 @@ class _CustomGoogleMapWidgetState extends State<CustomGoogleMapWidget> {
     return Stack(
       children: [
         GoogleMap(
-          onMapCreated: (controller) {
-            googleMapController = controller;
-          },
-            cameraTargetBounds: CameraTargetBounds(LatLngBounds(
-              northeast: const LatLng(30.087337041808762, 30.969917527762526),
-              southwest: const LatLng(29.89971209330168, 30.902797928808166),
-            )),
+            onMapCreated: (controller) {
+              googleMapController = controller;
+            },
+            // cameraTargetBounds: CameraTargetBounds(LatLngBounds(
+            //   northeast: const LatLng(30.087337041808762, 30.969917527762526),
+            //   southwest: const LatLng(29.89971209330168, 30.902797928808166),
+            // )),
             initialCameraPosition: initialCameraPosition),
         Positioned(
             bottom: 16,
@@ -38,8 +38,11 @@ class _CustomGoogleMapWidgetState extends State<CustomGoogleMapWidget> {
             left: 16,
             child: ElevatedButton(
                 onPressed: () {
-
-                }, child: const Text("change location")))
+                  googleMapController.animateCamera(CameraUpdate.newLatLng(
+                    const LatLng(24.034778405936567, 32.755125646292505),
+                  ));
+                },
+                child: const Text("change location")))
       ],
     );
   }
